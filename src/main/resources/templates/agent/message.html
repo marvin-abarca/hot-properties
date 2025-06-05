@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- The below line loads in styling elements from the CSS file -->
+    <!-- The @{} syntax is used to resolve the URL of the CSS file -->
+    <!-- Comment it out to see the content without styling -->
+<!--    <link th:href="@{/css/styles.css}" rel="stylesheet"/>-->
+</head>
+<body>
+<a th:href="@{/artists/showprofile(name=${artist.getName()})}" th:text="${artist.getName()}"> </a>
+
+</body>
+</html>
+<a th:href="@{/artists/showprofile(name=${artist.getName()})}" th:text="${artist.getName()}"> </a>
