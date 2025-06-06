@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>real-estate</title>
+    <link rel="shortcut icon" href="/images/static_images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments :: header}"></div>
+
+<div class="login-container">
+    <h1>Welcome to HotProperties</h1>
+    <h4>Find your dream home or manage your listings with ease.</h4>
+    <div class="login-link">
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
+        <div th:text="${applicationVersion}"></div>
+    </div>
+
+</div>
+</body>
+</html>

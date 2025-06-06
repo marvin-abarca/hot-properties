@@ -9,7 +9,7 @@ build/
 *.iml
 
 # Maven wrapper
-!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.jar
 
 # Application properties
 **/application.properties

@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users") // avoid using "user" — it's a reserved keyword in many SQL dialects
@@ -26,16 +28,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ROLE role;
-
-    public enum ROLE{
-        BUYER,
-        AGENT,
-        ADMIN
-    }
 
     private LocalDateTime createdAt;
 
@@ -62,16 +54,21 @@ public class User {
     )
     private List<Property> favoritedProperties = new ArrayList<>();
 
-
+    @ManyToMany(fetch = FetchType.EAGER)  // EAGER fetch to load roles during login
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     public User() {}
-    public User(Long id, String firstName, String lastName, String email, String password, ROLE role, LocalDateTime createdAt) {
+    public User(Long id, String firstName, String lastName, String email, String password, LocalDateTime createdAt) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.role = role;
         this.createdAt = createdAt;
     }
 
@@ -115,19 +112,18 @@ public class User {
         this.password = password;
     }
 
-    public ROLE getRole() {
-        return role;
-    }
-
-    public void setRole(ROLE role) {
-        this.role = role;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+    public Set<Role> getRoles() {
+        return roles;
+    }
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
+    public void addRole(Role role) {
+        this.roles.add(role);
     }
 }

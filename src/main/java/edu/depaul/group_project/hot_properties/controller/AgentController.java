@@ -1,5 +1,5 @@
 package edu.depaul.group_project.hot_properties.controller;
-
+/*
 import ch.qos.logback.core.model.Model;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,3 +20,4 @@ public class AgentController {
         return "agent.dashboard";
     }
 }
+*/
